@@ -15,9 +15,11 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('document_type');
-            $table->foreign('entity_id')->references('id')->on('entities');
+            $table->string('documentType');
+            $table->unsignedBigInteger('entityId');
             $table->timestamps();
+            
+            $table->foreign('entityId')->references('id')->on('entities')->onDelete('cascade');
         });
     }
 

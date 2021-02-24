@@ -18,8 +18,10 @@ class CreateAccountDetailsTable extends Migration
             $table->enum('accountType', ['esewa', 'imepay', 'khalti', 'bank' ,'fonepay', 'paypal']);
             $table->string('accountName',70);
             $table->string('accountNumber',16);
-            $table->foreign('bankId')->references('id')->on('banks');
+            $table->unsignedBigInteger('bankId')->nullable();
             $table->timestamps();
+            
+            $table->foreign('bankId')->references('id')->on('banks')->onDelete('cascade');
         });
     }
 

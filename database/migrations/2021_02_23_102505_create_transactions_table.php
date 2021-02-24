@@ -15,14 +15,18 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('transactionId');
-            $table->integer('amount');
-            $table->string('message');
-            $table->foreign('userId')->references('id')->on('users');
-            $table->foreign('entityId')->references('id')->on('entities');
-            $table->foreign('userId')->references('id')->on('users');
-            $table->string('paymentMethod');
+            $table->string('transactionId');
+            $table->float('amount');
+            $table->string('message')->nullable();
+            $table->unsignedBigInteger('userId')->nullable();
+            $table->unsignedBigInteger('entityId');
+            $table->enum('paymentMethod', ['esewa', 'imepay', 'khalti', 'bank' ,'fonepay', 'paypal']);
+            $table->string('currency',5);
             $table->timestamps();
+
+            $table->foreign('userId')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('entityId')->references('id')->on('entities')->onDelete('cascade');
+
         });
     }
 

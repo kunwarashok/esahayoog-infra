@@ -16,15 +16,15 @@ class CreateEntitiesTable extends Migration
         Schema::create('entities', function (Blueprint $table) {
             $table->id();
             $table->string('name',70);
-            $table->string('adress');
-            $table->string('number', 10);
-            $table->string('logo');
-            $table->string('coverImage');
-            $table->string('email');
-            $table->string('unique_name',50);
-            $table->enum('entity_type', ['streamer', 'foundation', 'social worker', 'organization', 'personal' ]);
-            $table->boolean('verified');
-            $table->boolean('status');
+            $table->string('address')->nullable();
+            $table->string('phone', 10);
+            $table->string('logo')->nullable();
+            $table->string('coverImage')->nullable();
+            $table->string('email')->unique();
+            $table->string('uniqueName',50);
+            $table->enum('entityType', ['streamer', 'foundation', 'social worker', 'organization', 'personal' ]);
+            $table->boolean('verified')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
