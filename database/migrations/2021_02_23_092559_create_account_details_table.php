@@ -15,13 +15,15 @@ class CreateAccountDetailsTable extends Migration
     {
         Schema::create('account_details', function (Blueprint $table) {
             $table->id();
-            $table->enum('accountType', ['esewa', 'imepay', 'khalti', 'bank' ,'fonepay', 'paypal']);
-            $table->string('accountName',70);
-            $table->string('accountNumber',16);
+            $table->enum('accountType', ['esewa', 'imepay', 'khalti', 'bank', 'fonepay', 'paypal']);
+            $table->string('accountName', 70);
+            $table->string('accountNumber', 16);
             $table->unsignedBigInteger('bankId')->nullable();
+            $table->unsignedBigInteger('entityId');
             $table->timestamps();
-            
+
             $table->foreign('bankId')->references('id')->on('banks')->onDelete('cascade');
+            $table->foreign('entiyId')->references('id')->on('entities')->onDelete('cascade');
         });
     }
 

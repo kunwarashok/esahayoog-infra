@@ -9,12 +9,13 @@ class AccountDetail extends Model
 {
     use HasFactory;
 
-    protected $table='account_details';
+    protected $table = 'account_details';
 
-    protected $fillable=[
+    protected $fillable = [
         'accountType',
         'accountName',
         'accountNumber',
-        'bankId'
+        'bankId',
+        'entityId'
     ];
 }
