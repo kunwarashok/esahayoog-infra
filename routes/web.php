@@ -30,5 +30,7 @@ Route::put('/entity/{id}/update', [EntityController::class, 'update'])->middlewa
 
 Route::get('/account/{id}/create', [AccountController::class, 'create'])->middleware(['auth'])->name('account.create');
 Route::post('/account', [AccountController::class, 'store'])->middleware(['auth'])->name('account.store');
+Route::get('/account/{id}/view', [AccountController::class, 'view'])->middleware(['auth'])->name('account.view');
+Route::get('/account/{id}/edit', [AccountController::class, 'edit'])->middleware(['auth'])->name('account.edit');
 
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware(['auth'])->name('transaction');

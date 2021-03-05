@@ -51,10 +51,11 @@
                                 <td>{{ $entity->email }}</td>
                                 <td>{{ $entity->phone }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></button>
+                                    <a href= "{{ route('account.view', $entity->id) }}" button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
 
-                                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
-                                    <a href= "{{ route('account.create', $entity->id) }}" button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
+                                    <a href= "{{ route('account.edit', $entity->id) }}" button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                    
+                                    <a href= "{{ route('account.create', $entity->id) }}" button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></>
                                 </td>
                                 <td>
                                     {{--
@@ -67,7 +68,7 @@
                                         <span style="height: 10em"><strong>  Edit</strong></span>
                                     </a> --}}
                                     <button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></button>
-                                    <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></button>
+                                    <button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button>
                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
                                 </td>
                                 <td>

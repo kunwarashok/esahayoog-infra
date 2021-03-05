@@ -39,4 +39,14 @@ class AccountController extends Controller
 
         return redirect()->route('entity');
     }
+    public function view(Request $request, $entityId)
+    {
+        $accounts = AccountDetail::where('entityId', $entityId)->orderBy('created_at', 'DESC')->get();
+        return view('entities.accounts.view')->with('account', $accounts)->with('entityId', $entityId);
+    }
+    public function edit(Request $request, $id)
+    {
+        $account = AccountDetail::find($id);
+        return view('entities.accounts.edit')->with('accountTypes', $this->accountTypes)->with('account', $account);
+    }
 }
