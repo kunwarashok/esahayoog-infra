@@ -10,7 +10,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <a href="{{ route('entity.create') }}" class="btn btn-success">Add Entity</a>
-                    <button type="button" class="btn btn-primary">Primary</button>
                     <br>
                     <br> @if(Session::has('success'))
                     <div class="alert alert-success">
@@ -32,9 +31,11 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Account Detail</th>
-                                <th scope="col"> Document</th>
-                                <th scope="col">Action</th>
-                                <th scope="col">Status</th>
+                                <th width ="130" scope="col"> Document</th>
+                                 <th scope="col">Verified</th>
+                                 <th scope="col">Status</th>
+                                <th width="130" scope="col">Action</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -51,10 +52,7 @@
                                 <td>{{ $entity->email }}</td>
                                 <td>{{ $entity->phone }}</td>
                                 <td>
-                                    <a href= "{{ route('account.view', $entity->id) }}" button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
-
-                                    <a href= "{{ route('account.edit', $entity->id) }}" button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                    
+                                    <a href= "{{ route('account.view', $entity->id) }}" button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>                                    
                                     <a href= "{{ route('account.create', $entity->id) }}" button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></>
                                 </td>
                                 <td>
@@ -72,11 +70,28 @@
                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
                                 </td>
                                 <td>
-                                    <a href="{{ route('entity.edit', $entity->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                    @if($entity->verified==1)
+                                        <span class="badge bg-success">YES</span>
+                                    @else
+                                        <span class="badge bg-light text-dark">NO</span>
+                                     @endif
+                                </td>
+                                
+                                <td>
+                                    @if($entity->status==1)
+                                        <span class="badge bg-success">Active</span>
+                                    @else
+                                        <span class="badge bg-light text-dark">Inactive</span>
+                                     @endif
                                 </td>
                                 <td>
-                                    {{ $entity->status }}
+                                    <a href="{{ route('entity.edit', $entity->id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+                                   
+                                   <form class="d-inline" action="{{ route('entity.destroy', $entity->id) }}" method="POST" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button  type="button" class="btn btn-danger btn-sm btn-delete"><i class="far fa-trash-alt"></i></button>
+                                   </form>
                                 </td>
                             </tr>
                             @endforeach

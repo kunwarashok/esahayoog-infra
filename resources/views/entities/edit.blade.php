@@ -76,16 +76,36 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="verified">Verified:</label>
-                        <input type="radio" id="yes" name="verified" value="1" checked>
+                        <input type="radio" id="yes" name="verified" value="1" 
+                         @if($entity->verified==1)
+                            checked
+                        
+                        @endif
+                        >
                         <label class="form-label" for="male">Yes</label>
-                        <input type="radio" id="no" name="verified" value="0">
+                        <input type="radio" id="no" name="verified" value="0"
+                         @if($entity->verified==0)
+                            checked
+                        
+                        @endif
+                        >
                         <label class="form-label" for="female">No</label><br>
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="status">Status:</label>
-                        <input type="radio" id="yes" name="status" value="1" checked>
+                        <input type="radio" id="yes" name="status" value="1" 
+                        @if($entity->status==1)
+                            checked
+                        
+                        @endif
+                        >
                         <label class="form-label" for="male">Active</label>
-                        <input type="radio" id="no" name="status" value="0">
+                        <input type="radio" id="no" name="status" value="0"
+                        @if($entity->status==0)
+                            checked
+                        
+                        @endif
+                        >
                         <label class="form-label" for="female">In active</label><br>
                     </div>
 

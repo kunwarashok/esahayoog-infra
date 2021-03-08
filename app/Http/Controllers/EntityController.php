@@ -110,7 +110,7 @@ class EntityController extends Controller
                 $oldLogo = $entity->logo;
                 if ($oldLogo) {
                     $oldLogoPath = public_path('images/') . $oldLogo;
-                    unlink($oldLogoPath);
+                    @unlink($oldLogoPath);
                 }
             } else {
                 $data['logo'] = null;
@@ -131,8 +131,8 @@ class EntityController extends Controller
                 //delete the old cover Image
                 $oldCoverImage = $entity->coverImage;
                 if ($oldCoverImage) {
-                    $oldCoverImagePath = public_path('images/coverImage') . $oldCoverImage;
-                    unlink($oldCoverImagePath);
+                    $oldCoverImagePath = public_path('images/coverImage/') . $oldCoverImage;
+                    @unlink($oldCoverImagePath);
                 } else {
                     $ata['coverImage'] = null;
                 }
@@ -148,6 +148,31 @@ class EntityController extends Controller
             Session::flash('error', 'Failed to update entity.');
         }
 
+        return redirect()->route('entity');
+    }
+    public function delete(Request $request, $id)
+    {
+        $entity = Entity::find($id);
+        $status = $entity->delete();
+
+        if ($status) {
+            // delete the old logo
+            $oldLogo = $entity->logo;
+            if ($oldLogo) {
+                $oldLogoPath = public_path('images/') . $oldLogo;
+                @unlink($oldLogoPath);
+            }
+
+            $oldCoverImage = $entity->coverImage;
+            if ($oldCoverImage) {
+                $oldCoverImagePath = public_path('images/coverImage/') . $oldCoverImage;
+                @unlink($oldCoverImagePath);
+            }
+
+            Session::flash('success', 'Entity Deleted successfully.');
+        } else {
+            Session::flash('error', 'Failed to delete entity.');
+        }
         return redirect()->route('entity');
     }
 }
