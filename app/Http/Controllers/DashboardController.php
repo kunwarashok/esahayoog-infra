@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entity;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index(){
-        // application logic to retrive and display dasboard data
-        // send data to dashboard view
-        $loggedInUserName = auth()->user()->name;
-        $loggedInUserEmail = auth()->user()->email;
-        // dd($loggedInUserName);
-        // $name = 'Test Kunwar';
+    public function index()
+    {
+        $dashboard = User::orderBy('created_at', 'DESC')->get();
+        $entities = Entity::orderBy('created_at', 'DESC')->get();
 
-        return view('dashboard.index')->with('username', $loggedInUserName)->with('email', $loggedInUserEmail);
+        $totalEntities = Entity::count();
+        $totalUsers = User::count();
+        $totalTransactions = Transaction::count();
+
+        return view('dashboard.index')
+            ->with('dashboard', $dashboard)
+            ->with('entities', $entities)
+            ->with('totalEntities', $totalEntities)
+            ->with('totalUsers', $totalUsers)
+            ->with('totalTransactions', $totalTransactions);
     }
 }

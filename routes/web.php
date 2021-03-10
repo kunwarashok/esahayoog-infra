@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,5 @@ Route::put('/account/{id}/update', [AccountController::class, 'update'])->middle
 Route::delete('/account/{id}', [AccountController::class, 'delete'])->middleware(['auth'])->name('account.destroy');
 
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware(['auth'])->name('transaction');
+
+Route::get('/users', [UserController::class, 'index'])->middleware(['auth'])->name('user');

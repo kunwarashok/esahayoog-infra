@@ -9,9 +9,9 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table='transations';
+    protected $table = 'transactions';
 
-    protected $fillable=[
+    protected $fillable = [
         'transactionId',
         'amount',
         'message',
@@ -20,4 +20,13 @@ class Transaction extends Model
         'paymentMethod',
         'currency',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, "userId");
+    }
+    public function entity()
+    {
+        return $this->belongsTo(Entity::class, "entityId");
+    }
 }

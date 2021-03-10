@@ -14,6 +14,7 @@
                             <tr>
                                 <th scope="col">SN</th>
                                 <th scope="col">Donar Name</th>
+                                <th scope="col">Entity</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Payment Through</th>
@@ -21,14 +22,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($transactions as $key => $transaction)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Sushil Thapa</td>
-                                <td>thapasushil40@gmail.com</td>
-                                <td>Rs.200</td>
-                                <td>e-Sewa</td>
-                                <td>2021/03/21</td>
+                                <th scope="row">{{ $key+1}}</th>
+                                <td>{{ $transaction->user->name }}</td>
+                                <td>{{ $transaction->entity->name }}</td>
+                                <td>{{ $transaction->user->email }}</td>
+                                <td>{{ $transaction->amount }}</td>
+                                <td>{{ $transaction->paymentMethod}}</td>
+                                <td>{{ date('d M Y', strtotime($transaction->created_at)) }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
