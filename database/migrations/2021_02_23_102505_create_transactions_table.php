@@ -21,7 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('userId')->nullable();
             $table->unsignedBigInteger('entityId');
             $table->enum('paymentMethod', ['esewa', 'imepay', 'khalti', 'bank' ,'fonepay', 'paypal']);
-            $table->string('currency',5);
+            $table->string('currency',5)->default("NPR");
             $table->timestamps();
 
             $table->foreign('userId')->references('id')->on('users')->onDelete('set null');

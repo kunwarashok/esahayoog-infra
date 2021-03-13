@@ -23,7 +23,7 @@ class CreateAccountDetailsTable extends Migration
             $table->timestamps();
 
             $table->foreign('bankId')->references('id')->on('banks')->onDelete('cascade');
-            $table->foreign('entiyId')->references('id')->on('entities')->onDelete('cascade');
+            $table->foreign('entityId')->references('id')->on('entities')->onDelete('cascade');
         });
     }
 
