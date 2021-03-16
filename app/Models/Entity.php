@@ -20,6 +20,7 @@ class Entity extends Model
         "email",
         "uniqueName",
         "entityType",
+        "webToken",
         "verified",
         "status"
     ];

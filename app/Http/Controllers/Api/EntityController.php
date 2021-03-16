@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\DonationCompleted;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\Transaction;
@@ -14,7 +15,7 @@ class EntityController extends Controller
         $data = [];
 
         if($uniqueName){
-            $entity = Entity::select("id", "name", "uniqueName","logo", "coverImage")->where("uniqueName", $uniqueName)->first();
+            $entity = Entity::select("id", "name", "uniqueName", "entityType","logo", "coverImage")->where("uniqueName", $uniqueName)->first();
 
             if($entity){
                 $success = true;
@@ -33,9 +34,10 @@ class EntityController extends Controller
         $data = [];
 
         $res = $request->data;
+
+        // set the transaction object
         $transaction = new Transaction();
 
-        // set the values to transaction object
         $transaction->entityId = $res["entityId"];
         $transaction->transactionId = $res["idx"];
         $transaction->amount = $res["amount"];
@@ -43,6 +45,15 @@ class EntityController extends Controller
         $transaction->paymentMethod = $res["paymentMethod"];
 
         $transaction->save();
+
+        $eventData = [
+            "username" => $res["name"],
+            "amount" => $res["amount"],
+            "message" => $res["message"]
+        ];
+
+        // dispatch the event so that notification for donation could be sent
+        event(new DonationCompleted($eventData));
 
         return response()->json([
             "success"=> $success,
