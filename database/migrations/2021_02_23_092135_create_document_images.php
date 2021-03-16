@@ -15,11 +15,11 @@ class CreateDocumentImages extends Migration
     {
         Schema::create('document_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('documentTypeId');
+            $table->unsignedBigInteger('documentId');
             $table->string('image');
             $table->timestamps();
 
-            $table->foreign('documentTypeId')->references('id')->on('documents')->onDelete('cascade');
+            $table->foreign('documentId')->references('id')->on('documents')->onDelete('cascade');
         });
     }
 

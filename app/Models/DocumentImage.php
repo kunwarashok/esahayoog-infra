@@ -11,8 +11,8 @@ class DocumentImage extends Model
 
     protected $table = 'document_images';
 
-    protected $fillable=[
-        'documentTypeId',
+    protected $fillable = [
+        'documentId',
         'image'
     ];
 }

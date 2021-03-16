@@ -4,8 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +41,9 @@ Route::get('/account/{entityId}', [AccountController::class, 'view'])->middlewar
 Route::get('/account/{id}/edit', [AccountController::class, 'edit'])->middleware(['auth'])->name('account.edit');
 Route::put('/account/{id}/update', [AccountController::class, 'update'])->middleware(['auth'])->name('account.update');
 Route::delete('/account/{id}', [AccountController::class, 'delete'])->middleware(['auth'])->name('account.destroy');
+
+Route::get('/document/{id}/create', [DocumentController::class, 'create'])->middleware(['auth'])->name('document.create');
+Route::post('/document', [DocumentController::class, 'store'])->middleware(['auth'])->name('document.store');
 
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware(['auth'])->name('transaction');
 
