@@ -12,9 +12,19 @@
                     <form class="validate" action="{{ route('document.store') }}" method="POST" enctype="multipart/form-data" novalidate>
                         @csrf
                         <input type="hidden" name="entityId" value="{{ $entityId }}">
-                        <input type="hidden" name="documentType" value="nationalId">
-                         <div class="mb-3">
-                            <label class="form-label" for="logo">National Id:</label>
+                        <div class="mb-3">
+                            <label class="form-label" for="documentType">Select Your Document Type:</label>
+                            <select class="form-control" name="documentType" id="documentType">
+                                <option value="">Choose Value</option>
+                                @foreach($documentTypes as $value)
+                                <option value="{{ $value }}">{{ $value }}</option>
+                                @endforeach
+                            </select> @error('documentType')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                         </div>    
+                        <div class="mb-3">
+                            <label class="form-label" for="image">National Id:</label>
                             <br>
                             <input type="file" id="image" name="image[]" multiple accept="image/png, image/jpeg">
                             @error('image')

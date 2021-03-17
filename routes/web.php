@@ -41,6 +41,11 @@ Route::delete('/account/{id}', [AccountController::class, 'delete'])->middleware
 
 Route::get('/document/{id}/create', [DocumentController::class, 'create'])->middleware(['auth'])->name('document.create');
 Route::post('/document', [DocumentController::class, 'store'])->middleware(['auth'])->name('document.store');
+Route::get('/document/{entityId}', [DocumentController::class, 'view'])->middleware(['auth'])->name('document.view');
+Route::get('/document/{id}/edit', [DocumentController::class, 'edit'])->middleware(['auth'])->name('document.edit');
+Route::put('/document/{id}/update', [DocumentController::class, 'update'])->middleware(['auth'])->name('document.update');
+Route::delete('/document/{id}', [DocumentController::class, 'delete'])->middleware(['auth'])->name('document.destroy');
+
 
 Route::get('/transactions', [TransactionController::class, 'index'])->middleware(['auth'])->name('transaction');
 

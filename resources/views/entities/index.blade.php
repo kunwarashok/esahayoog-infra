@@ -65,9 +65,9 @@
                                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                         <span style="height: 10em"><strong>  Edit</strong></span>
                                     </a> --}}
-                                    <button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></button>
+                                    <a href= "{{ route('document.view', $entity->id) }}" button type="button" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
                                     {{--<button type="button" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button>--}}
-                                   <a href= "{{ route('document.create', $entity->id) }}" button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></a>
+                                    <a href= "{{ route('document.create', $entity->id) }}" button type="button" class="btn btn-success btn-sm"><i class="fas fa-plus"></i></a>
                                 </td>
                                 <td>
                                     @if($entity->verified==1)
