@@ -31,6 +31,7 @@ class EntityController extends Controller
 
     public function donate(Request $request){
         $success = true;
+        $message = "";
         $data = [];
 
         $res = $request->data;
@@ -57,7 +58,8 @@ class EntityController extends Controller
 
         return response()->json([
             "success"=> $success,
-            "data" => $data
+            "data" => $data,
+            "message" => $message
         ]);
     }
 }

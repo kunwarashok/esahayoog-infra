@@ -23,6 +23,7 @@ class CreateEntitiesTable extends Migration
             $table->string('email')->unique();
             $table->string('uniqueName',50);
             $table->enum('entityType', ['streamer', 'foundation', 'social worker', 'organization', 'personal' ]);
+            $table->string('webToken',50)->nullable();
             $table->boolean('verified')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();
